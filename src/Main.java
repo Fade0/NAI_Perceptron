@@ -1,0 +1,123 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+
+public class Main {
+
+        public static void main(String[] args) throws IOException{
+
+
+            List<Node> nodeTrainList;
+            List<Node> nodeTestList;
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+            System.out.println("Pass A:");
+            double alpha = Double.parseDouble(bufferedReader.readLine());
+            System.out.println("Pass train-set:");
+            String trainSetAddress = bufferedReader.readLine();
+            System.out.println("Pass test-set: [type \"MY OWN VECTOR\", if you want to pass custom vector]");
+            String testSetAddress = bufferedReader.readLine();
+
+            nodeTrainList = getNodeList(trainSetAddress);
+
+            int n=0;
+            HashMap<String,Integer> answerMap = new HashMap<>();
+            for (Node node : nodeTrainList) {
+                if (!answerMap.containsKey(node.getNodeClassName()))
+                    answerMap.put(node.getNodeClassName(),n++);
+
+                if (answerMap.size()==2)
+                    break;
+            }
+
+            Collections.shuffle(nodeTrainList);
+            Perceptron perceptron = new Perceptron(nodeTrainList.get(0).getAttributesColumn().size(),alpha);
+            for (Node value : nodeTrainList)
+                perceptron.learn(value, answerMap.get(value.getNodeClassName()));
+
+            if (testSetAddress.equals("MY OWN VECTOR")) {
+                while (true) {
+                    System.out.println("Pass correct vector [split with \";\"]");
+
+                    String line = bufferedReader.readLine();
+                    line += ";[NO LABEL]";
+                    List<Node> nodeSet = new ArrayList<>();
+                    String[] tmp = line.split(";");
+                    List<Double> attributesColumn = new ArrayList<>();
+
+                    for (int i = 0; i < tmp.length - 1; i++)
+                        attributesColumn.add(Double.parseDouble(tmp[i]));
+
+                    nodeSet.add(new Node(attributesColumn, tmp[tmp.length - 1]));
+                    nodeTestList = nodeSet;
+
+
+
+                    for (Node node : nodeTestList) {
+                        int y = perceptron.evaluate(node);
+                        for (String key :answerMap.keySet())
+                            if (answerMap.get(key)==y)
+                                System.out.println("Answer: "+ key+"\n");
+
+                    }
+                }
+            }
+            else{
+                nodeTestList = getNodeList(testSetAddress);
+
+                n=0;
+                String[] keyArray = new String[2];
+                for (String key :answerMap.keySet())
+                    keyArray[n++]=key;
+
+                int numberOfCorrectAnswerOfFirstClass = 0;
+                int numberOfCorrectAnswerOfSecondClass = 0;
+                int numberOfAppearancesOfFirstClass = 0;
+                int numberOfAppearancesOfSecondClass = 0;
+
+                for (Node node : nodeTestList) {
+                    int y = perceptron.evaluate(node);
+
+                    if (answerMap.get(node.getNodeClassName()) == 0)
+                        numberOfAppearancesOfFirstClass++;
+
+                    if (answerMap.get(node.getNodeClassName()) == 1)
+                        numberOfAppearancesOfSecondClass++;
+
+                    if (answerMap.get(keyArray[0]) == y && y == answerMap.get(node.getNodeClassName()))
+                        numberOfCorrectAnswerOfFirstClass++;
+
+                    if (answerMap.get(keyArray[1]) == y && y == answerMap.get(node.getNodeClassName()))
+                        numberOfCorrectAnswerOfSecondClass++;
+                }
+
+                System.out.println("Accuracy for "+ keyArray[0]+ ": "+ ((double) numberOfCorrectAnswerOfFirstClass/numberOfAppearancesOfFirstClass)*100+"%");
+                System.out.println("Accuracy for "+ keyArray[1]+ ": "+ (double) numberOfCorrectAnswerOfSecondClass/numberOfAppearancesOfSecondClass*100+"%");
+                System.out.println("Total accuracy: "+ (double) (numberOfCorrectAnswerOfFirstClass+numberOfCorrectAnswerOfSecondClass)/nodeTestList.size()*100+"%");
+                System.out.println("Final Vector: "+perceptron.getVectorW()+ " Theta threshold: "+ perceptron.getThetaThreshold());
+            }
+        }
+
+    public static List<Node> getNodeList(String fileAddress) throws IOException {
+        String line;
+        List<Node> nodeSet = new ArrayList<>();
+
+        FileReader fileReader = new FileReader(fileAddress);
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+        while ((line = bufferedReader.readLine())!=null && (!line.equals(""))){
+            String [] tmp = line.split(";");
+
+            List<Double> attributesColumn = new ArrayList<>(); // JELISLI BLAD TUTAJ TO USUNAC OSTATNI PUSTY WIERSZ
+            for (int i = 0; i < tmp.length-1 ; i++)
+                attributesColumn.add(Double.parseDouble(tmp[i]));
+
+            nodeSet.add(new Node(attributesColumn,tmp[tmp.length-1]));
+        }
+        return nodeSet;
+    }
+}

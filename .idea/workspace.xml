@@ -4,21 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b0feca5-2ad1-4fd7-b4ab-2b70a6c3b4f6" name="Changes" comment="First Commit">
-      <change afterPath="$PROJECT_DIR$/Perceptronv2/Perceptronv2.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Perceptronv2/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Perceptronv2/src/Node.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Perceptronv2/src/Perceptron.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iris_test.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iris_train.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test-set.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/train-set.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Node.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Perceptron.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Perceptron.java" afterDir="false" />
-    </list>
+    <list default="true" id="8b0feca5-2ad1-4fd7-b4ab-2b70a6c3b4f6" name="Changes" comment="Updated version" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -94,7 +80,7 @@
       <option name="presentableId" value="Default" />
       <updated>1681308701555</updated>
       <workItem from="1681308702782" duration="24000" />
-      <workItem from="1681308743087" duration="8502000" />
+      <workItem from="1681308743087" duration="9086000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit">
       <created>1681309410118</created>
@@ -103,7 +89,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681309410118</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Updated version">
+      <created>1681390210062</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1681390210062</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -112,7 +105,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="test" />
     <MESSAGE value="First Commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="First Commit" />
+    <MESSAGE value="Updated version" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated version" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

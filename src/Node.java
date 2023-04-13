@@ -1,28 +1,30 @@
 import java.util.List;
 
 public class Node {
-    private final List<Double> attributesColumn; //attributes columns
-    private final String nodeClassName; //decision column
 
+    private final List<Double> attributesColumn;
+    private final String className;
 
-    public Node(List<Double> attributesColumn, String irisClassName) {
+    public Node(List<Double> attributesColumn, String className) {
         this.attributesColumn = attributesColumn;
-        this.nodeClassName = irisClassName;
+        this.className = className;
     }
 
     public List<Double> getAttributesColumn() {
         return attributesColumn;
     }
 
-    public String getNodeClassName() {
-        return nodeClassName;
+    public String getClassName() {
+        return className;
     }
+
 
     @Override
     public String toString() {
         return "Node{" +
                 "attributesColumn=" + attributesColumn +
-                ", irisClassName='" + nodeClassName + '\'' +
+                ", className='" + className + '\'' +
                 '}';
     }
 }
+

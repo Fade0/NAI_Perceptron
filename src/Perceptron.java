@@ -9,7 +9,8 @@ public class Perceptron {
     public Perceptron(int vectorSize, double alpha) {
         this.alpha = alpha;
         this.vectorW = new ArrayList<>();
-        for (int i = 0; i < vectorSize ; i++) // from -5 to 5 as starting values
+        for (int i = 0; i < vectorSize ; i++)
+            //-5 to 5
             this.vectorW.add((Math.random()*10)-5);
 
         this.thetaThreshold = Math.random()*10-5;
@@ -19,9 +20,6 @@ public class Perceptron {
         return vectorW;
     }
 
-    public void setVectorW(List<Double> vectorW) {
-        this.vectorW = vectorW;
-    }
 
     public double getThetaThreshold() {
         return thetaThreshold;
@@ -35,20 +33,37 @@ public class Perceptron {
         this.alpha = alpha;
     }
 
-    public void learn(Node node, int correctAnswer){
+    public void setVectorW(List<Double> vectorW) {
+        this.vectorW = vectorW;
+    }
 
+    public double getAlpha() {
+        return alpha;
+    }
+
+
+    public void learn(Node node, int correctAnswer){
+        int y = 0;
         double net = 0;
-        for (int i = 0; i < node.getAttributesColumn().size() ; i++) // Calculate X * W
+        // Calculate X * W
+        for (int i = 0; i < node.getAttributesColumn().size() ; i++) {
             net += node.getAttributesColumn().get(i) * this.vectorW.get(i);
+        }
 
         //net = d - theta
+        if (net >= this.thetaThreshold){
+            y = 1;
+        }
+        else{
+            y = 0;
+        }
 
-        int y = (net>=this.thetaThreshold?1:0);
-
-        if (y != correctAnswer) { //Do learn
-            //System.out.println("LEARN!");
+        if (y != correctAnswer) {
+            //Main vector
             List<Double> vectorWPrime = new ArrayList<>(this.vectorW);
-            for (int i = 0; i < node.getAttributesColumn().size(); i++) // W' = W + (Correct-Y) * Alpha * X
+
+            // W' = W + (Correct-Y) * Alpha * X
+            for (int i = 0; i < node.getAttributesColumn().size(); i++)
                 vectorWPrime.set(i, (this.vectorW.get(i) + ((correctAnswer - y) * alpha * node.getAttributesColumn().get(i))));
 
             this.vectorW = vectorWPrime;
@@ -56,12 +71,20 @@ public class Perceptron {
         }
     }
 
+    //Net
     public int evaluate(Node node){
         double net = 0;
-        for (int i = 0; i < node.getAttributesColumn().size() ; i++) // Calculate X * W
+        // Calculate X * W
+        for (int i = 0; i < node.getAttributesColumn().size() ; i++)
             net += node.getAttributesColumn().get(i) * this.vectorW.get(i);
 
-        return (net>=this.thetaThreshold?1:0);
+        if (net >= thetaThreshold) {
+            return 1;
+        }
+        else{
+            return 0;
+        }
+
     }
 
     @Override

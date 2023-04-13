@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/NAI_Perceptron.iml" filepath="$PROJECT_DIR$/NAI_Perceptron.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Perceptronv2/Perceptronv2.iml" filepath="$PROJECT_DIR$/Perceptronv2/Perceptronv2.iml" />
     </modules>
   </component>
 </project>

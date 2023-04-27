@@ -57,7 +57,7 @@ public class Main {
             if (userChoice.trim().equals("Vector")) {
 
                     System.out.println("Insert values for vector split them with \";\"] \n " +
-                            "Remember that if you inser double you should use \".\" ");
+                            "Remember that if you insert double you should use \".\" ");
 
                     String line = bufferedReader.readLine();
                     line += ";[Labeless]";
@@ -65,6 +65,7 @@ public class Main {
 
                     //; because of csv file formatting
                     String[] tmp = line.split(";");
+                    System.out.println(tmp);
                     List<Double> attributesColumn = new ArrayList<>();
 
                     for (int i = 0; i < tmp.length - 1; i++) {
